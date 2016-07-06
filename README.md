@@ -45,3 +45,11 @@ node.js提供这样一个平台，让你能够通过javascript, 去调用已经�
 由于javascript代码的执行是单线程的，导致无法充分利用服务器多核资源，node采用的解决方案是 Master-Workers, 用以下模块就可实现
  - Child Processes
  - Cluster
+
+####7,  辅助开发模块
+ 充分利用好下列模块，能让我们的开发变得更加的高效，容易
+ - Zlib
+ - Crypto
+ - Debugger
+ - Utilities
+ - Assertion
