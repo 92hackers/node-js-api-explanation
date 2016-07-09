@@ -53,3 +53,8 @@ node.js提供这样一个平台，让你能够通过javascript, 去调用已经�
  - Debugger
  - Utilities
  - Assertion
+
+###参考资源
+ - [深入浅出node.js](http://item.jd.com/11355978.html)
+ - [node.js api document](https://nodejs.org/dist/latest-v4.x/docs/api/)
+ - [node.js source code](https://github.com/nodejs/node)
