@@ -30,10 +30,10 @@ node里面很多类都是继承自stream类型的，比如：
 从上面可以看出，基本上都是一一对应的，同时也告诉我们，有哪些方法可以从一个readable stream当中读取数据。
 
 #### Q: 哪些情况下需要转回静止模式？
-A: 前面我们提到，在读取数据的时候，是先读入缓存，一次读取的大小默认是 64kb, 而写入的时候，也是先写入缓存，默认是 16kb, 这个时候问题就来了，如果写入流的 16kb 占满了，还在写入，这个时候缓存就不会再继续接受读取来的数据了，所以这个时候需要暂停读取，将readableSteam转变为静止模式，等待 writableSteam 的缓存清空之后，执行 readableStram.resume() 就可以重新读取数据了。
+A: 前面我们提到，在读取数据的时候，是先读入缓存，一次读取的大小默认是 64kb, 而写入的时候，也是先写入缓存，默认是 16kb, 这个时候问题就来了，如果写入流的 16kb 占满了，还在写入，这个时候缓存就不会再继续接受读取来的数据了，所以这个时候需要暂停读取，将readableStream转变为静止模式，等待 writableStream 的缓存清空之后，执行 readableStram.resume() 就可以重新读取数据了。
 
-#### Q: 如果是 readableStream.pipe() 打开的读取流，用 readableSteam.pause() 可以暂停吗？
-A: 官方文档写的是不能保证，经过我自己测试，无法暂停，稍后会加上测试代码，所以，最好的读取原则是：按照上面所列处的转换模式的三条方法，一一对应的操作，比如：你用了 `readableStream.pipe()`来开始, 就用`readableStream.unpipe()`来暂停。
+#### Q: 如果是 readableStream.pipe() 打开的读取流，用 readableStream.pause() 可以暂停吗？
+A: 官方文档写的是不能保证，经过我自己测试，无法暂停，稍后会加上测试代码，所以，最好的读取原则是：按照上面所列出的转换模式的三条方法，一一对应的操作，比如：你用了 `readableStream.pipe()`来开始, 就用`readableStream.unpipe()`来暂停。
 
 #### events:
  - close: 当 stream 关闭的时候，触发，可以手动用 stream.close() 来关闭。
@@ -48,7 +48,7 @@ A: 官方文档写的是不能保证，经过我自己测试，无法暂停，�
  - pipe(destination): 将读取流用管道流到一个 writableStream.
  - unpipe(destination): 关闭该管道。
 
-### writableSteam
+### writableStream
 有了输出流，肯定要有一个输入流，在整个交互的过程当中，占有主动权的是输出流，输入流是被动的接受数据，这也体现在事件信号和方法的设计上面。
 
 #### events:
